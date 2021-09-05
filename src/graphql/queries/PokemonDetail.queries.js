@@ -5,10 +5,16 @@ export const GET_POKEMON_BY_NAME = gql`
 		pokemon(name: $name) {
 			id
 			name
+			weight
+			height
+			sprites {
+				front_default
+			}
 			abilities {
 				ability {
 					name
 				}
+				is_hidden
 			}
 			moves {
 				move {

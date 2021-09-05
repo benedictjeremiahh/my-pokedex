@@ -1,19 +1,15 @@
 import { makeStyles } from "@material-ui/core";
 
 export const useStyles = makeStyles((theme) => ({
-	container: {
-		padding: "24px 12px 56px 12px",
-	},
-	title: {
-		textAlign: "center",
-		fontSize: "24px",
-	},
+	container: theme.container,
+
 	pokemonItem: {
-		width: "80vw",
+		width: "38vw",
 		padding: "12px",
 		margin: "12px 0",
 	},
 	pokemonName: {
+		color: "black",
 		textTransform: "capitalize",
 		display: "flex",
 		alignItems: "center",
@@ -21,16 +17,12 @@ export const useStyles = makeStyles((theme) => ({
 		fontWeight: "bold",
 	},
 	pokemonImage: {
-		width: "80px",
-		height: "80px",
+		width: "100%",
 
-		[theme.breakpoints.up("sm")]: {
-			width: "120px",
-			height: "120px",
-		},
+		[theme.breakpoints.up("sm")]: {},
 	},
 	paginationContainer: {
-		padding: "24px 0",
+		paddingTop: "24px",
 		display: "flex",
 		justifyContent: "center",
 	},

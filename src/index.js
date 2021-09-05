@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { createBrowserHistory } from "history";
 import { Router } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import PokemonProvider from "./providers/pokemon/pokemon.provider";
 
 const client = new ApolloClient({
 	uri: "https://graphql-pokeapi.vercel.app/api/graphql",
@@ -17,7 +18,9 @@ ReactDOM.render(
 	<React.StrictMode>
 		<Router history={hist}>
 			<ApolloProvider client={client}>
-				<App />
+				<PokemonProvider>
+					<App />
+				</PokemonProvider>
 			</ApolloProvider>
 		</Router>
 	</React.StrictMode>,

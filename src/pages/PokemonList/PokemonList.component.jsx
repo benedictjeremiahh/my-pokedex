@@ -17,6 +17,9 @@ const PokemonList = () => {
 		variables: { limit: limit, offset: offset },
 	});
 
+	if (!!error)
+		return <h3>Oops... Something happened, please try again...</h3>;
+
 	console.log(data);
 
 	const onChangePagination = (e, pageNumber) => {
@@ -36,65 +39,46 @@ const PokemonList = () => {
 			/>
 
 			<Grid container className={classes.container}>
-				{!!error ? (
-					<h3>Oops... Something happened, please try again...</h3>
-				) : (
-					<>
-						<Grid container item xs={12} justifyContent="center">
-							{!!data &&
-								data.pokemons.results.map((pokemon, key) => (
-									<Link
-										to={`pokemons/${pokemon.name}`}
-										key={key}
-									>
-										<Paper
-											elevation={3}
-											className={classes.pokemonItem}
+				<Grid container item xs={12} justifyContent="space-evenly">
+					{!!data &&
+						data.pokemons.results.map((pokemon, key) => (
+							<Paper
+								elevation={3}
+								className={classes.pokemonItem}
+							>
+								<Link to={`pokemons/${pokemon.name}`} key={key}>
+									<Grid container>
+										<Grid item xs={12}>
+											<img
+												className={classes.pokemonImage}
+												src={pokemon.image}
+												alt={pokemon.name}
+											/>
+										</Grid>
+										<Grid
+											item
+											xs={12}
+											className={classes.pokemonName}
 										>
-											<Grid container>
-												<Grid item xs={3}>
-													<img
-														className={
-															classes.pokemonImage
-														}
-														src={pokemon.image}
-														alt={pokemon.name}
-													/>
-												</Grid>
-												<Grid
-													item
-													xs={9}
-													className={
-														classes.pokemonName
-													}
-												>
-													{pokemon.name}
-												</Grid>
-											</Grid>
-										</Paper>
-									</Link>
-								))}
-						</Grid>
-						<Grid
-							item
-							xs={12}
-							className={classes.paginationContainer}
-						>
-							{!!data && (
-								<Pagination
-									page={page}
-									size="small"
-									count={Math.ceil(
-										data.pokemons.count / limit
-									)}
-									onChange={onChangePagination}
-									variant="outlined"
-									shape="rounded"
-								/>
-							)}
-						</Grid>
-					</>
-				)}
+											{pokemon.name}
+										</Grid>
+									</Grid>
+								</Link>
+							</Paper>
+						))}
+				</Grid>
+				<Grid item xs={12} className={classes.paginationContainer}>
+					{!!data && (
+						<Pagination
+							page={page}
+							size="small"
+							count={Math.ceil(data.pokemons.count / limit)}
+							onChange={onChangePagination}
+							variant="outlined"
+							shape="rounded"
+						/>
+					)}
+				</Grid>
 			</Grid>
 		</>
 	);
