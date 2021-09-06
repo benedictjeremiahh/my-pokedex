@@ -22,3 +22,7 @@ a:hover,
 a:active {
 	color: black;
 }
+
+form {
+	width: 100%;
+}

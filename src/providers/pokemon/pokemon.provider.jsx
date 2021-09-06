@@ -8,7 +8,7 @@ import {
 export const PokemonContext = createContext({
 	myPokemons: [],
 	addPokemon: () => {},
-	removePokemon: () => {},
+	releasePokemon: () => {},
 	editPokemon: () => {},
 	getCountPokemonByName: () => {},
 });
@@ -21,8 +21,10 @@ const PokemonProvider = ({ children }) => {
 
 	const addPokemon = (pokemon) =>
 		setMyPokemons(addPokemonToMyPokemons(myPokemons, pokemon));
-	const releasePokemon = (pokemon) =>
-		setMyPokemons(releasePokemonFromMyPokemons(myPokemons, pokemon));
+	const releasePokemon = (pokemonNicknameToRelease) =>
+		setMyPokemons(
+			releasePokemonFromMyPokemons(myPokemons, pokemonNicknameToRelease)
+		);
 	const editPokemon = (pokemon) =>
 		setMyPokemons(editPokemonFromMyPokemons(myPokemons, pokemon));
 

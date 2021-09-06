@@ -6,7 +6,7 @@ import {
 	Modal,
 	TextField,
 } from "@material-ui/core";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useStyles } from "./ModalCatchResult.styles";
 import Pokeball from "../../assets/img/pokeball.png";
 import { PokemonContext } from "../../providers/pokemon/pokemon.provider";
@@ -14,14 +14,16 @@ import { PokemonContext } from "../../providers/pokemon/pokemon.provider";
 const ModalCatchResult = (props) => {
 	const { open, isCatchSuccess, onClose, pokemon } = props;
 	const classes = useStyles();
-	const { addPokemon, myPokemons } = useContext(PokemonContext);
+	const { editPokemon, myPokemons } = useContext(PokemonContext);
+	const [nickname, setNickname] = useState("");
 	const [errorText, setErrorText] = useState(null);
 
-	const submitNickname = () => {
-		const nickname = document.getElementById("nickname").value;
+	const updateNickname = (e) => {
+		e.preventDefault();
 
 		const checkNicknameExist = myPokemons.find(
-			(pokemon) => pokemon.nickname === nickname
+			(myPokemon) =>
+				myPokemon.id !== pokemon.id && myPokemon.nickname === nickname
 		);
 
 		if (!!checkNicknameExist) {
@@ -29,24 +31,30 @@ const ModalCatchResult = (props) => {
 				"This nickname is already been taken, please choose another nickname"
 			);
 		} else {
-			addPokemon({
-				nickname,
-				name: pokemon.name,
-				image: pokemon.sprites.front_default,
-			});
+			const hasNicknameChanges = nickname !== pokemon.nickname;
+			if (hasNicknameChanges) {
+				editPokemon({
+					id: pokemon.id,
+					nickname: pokemon.nickname,
+					newNickname: nickname,
+				});
+			}
 			onClose();
 		}
 	};
 
-	const onChangeNickname = () => {
+	const onChangeNickname = (e) => {
+		setNickname(e.target.value);
 		setErrorText("");
 	};
+
+	useEffect(() => {
+		if (!!pokemon) setNickname(pokemon.nickname);
+	}, [pokemon]);
 
 	if (isCatchSuccess === true || isCatchSuccess === false)
 		return (
 			<Modal
-				aria-labelledby="modal-catch-result-title"
-				aria-describedby="modal-catch-result-description"
 				className={classes.modal}
 				open={open}
 				onClose={!isCatchSuccess ? onClose : undefined}
@@ -74,7 +82,7 @@ const ModalCatchResult = (props) => {
 								: "You haven't successfully capture the pokemon. Don't be sad fellas, Let's try again!"}
 						</Grid>
 						{isCatchSuccess === true ? (
-							<>
+							<form onSubmit={updateNickname}>
 								<Grid
 									item
 									xs={12}
@@ -82,12 +90,13 @@ const ModalCatchResult = (props) => {
 								>
 									<TextField
 										fullWidth
+										autoFocus
 										id="nickname"
 										label="Nickname"
 										error={!!errorText}
 										helperText={errorText}
 										onChange={onChangeNickname}
-										defaultValue={pokemon.name}
+										value={nickname}
 									/>
 								</Grid>
 								<Grid
@@ -96,13 +105,13 @@ const ModalCatchResult = (props) => {
 									className={classes.buttonContainer}
 								>
 									<Button
-										className={classes.submitButton}
-										onClick={submitNickname}
+										className={`${classes.submitButton} ${classes.success}`}
+										type="submit"
 									>
 										Submit
 									</Button>
 								</Grid>
-							</>
+							</form>
 						) : (
 							<Grid
 								item
@@ -110,7 +119,8 @@ const ModalCatchResult = (props) => {
 								className={classes.buttonContainer}
 							>
 								<Button
-									className={classes.closeButton}
+									className={`${classes.closeButton} ${classes.danger}`}
+									type="button"
 									onClick={onClose}
 								>
 									Close

@@ -29,24 +29,13 @@ export const useStyles = makeStyles((theme) => ({
 		textAlign: "center",
 		fontSize: "18px",
 		marginTop: "18px",
-		lineHeight : '24px'
+		lineHeight: "24px",
 	},
-	nicknameInputContainer: {
-		marginTop: "12px",
-	},
-	buttonContainer: {
-		marginTop: "20px",
-		display: "flex",
-		justifyContent: "center",
-	},
-	submitButton: {
+	buttonConfirmation: {
 		color: "white",
 		paddingLeft: "24px",
 		paddingRight: "24px",
-	},
-	closeButton: {
-		color: "white",
-		paddingLeft: "24px",
-		paddingRight: "24px",
+
+		margin: "6px 0",
 	},
 }));

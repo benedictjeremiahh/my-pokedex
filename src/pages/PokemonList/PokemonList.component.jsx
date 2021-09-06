@@ -1,35 +1,33 @@
 import { useQuery } from "@apollo/client";
 import { Grid, Paper } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import LoadingBackdrop from "../../components/LoadingBackdrop/LoadingBackdrop.component";
 import { GET_POKEMON_LIST } from "../../graphql/queries/PokemonList.queries";
 import { useStyles } from "./PokemonList.styles";
 import { Link } from "react-router-dom";
 import Pagination from "@material-ui/lab/Pagination";
+import { getMyPokemonCount } from "../../helpers/PokemonList.helper";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.component";
+import PokemonItem from "../../components/PokemonItem/PokemonItem.component";
+import { PokemonContext } from "../../providers/pokemon/pokemon.provider";
+import usePagination from "../../hooks/Pagination.hooks";
 
 const PokemonList = () => {
 	const classes = useStyles();
 	const limit = 20;
-	const [page, setPage] = useState(1);
-	const [offset, setOffset] = useState(1);
+	const [page, offset, onChangePagination] = usePagination({
+		defaultPage: 1,
+		defaultOffset: 1,
+		limit,
+	});
+	const { myPokemons } = useContext(PokemonContext);
 
 	const { loading, error, data } = useQuery(GET_POKEMON_LIST, {
 		variables: { limit: limit, offset: offset },
 	});
 
-	if (!!error)
-		return <h3>Oops... Something happened, please try again...</h3>;
+	if (!!error) return <ErrorMessage />;
 
-	console.log(data);
-
-	const onChangePagination = (e, pageNumber) => {
-		setPage(pageNumber);
-		if (pageNumber === 1) {
-			setOffset(1);
-		} else {
-			setOffset((pageNumber - 1) * limit + 1);
-		}
-	};
 	return (
 		<>
 			<LoadingBackdrop
@@ -39,34 +37,18 @@ const PokemonList = () => {
 			/>
 
 			<Grid container className={classes.container}>
-				<Grid container item xs={12} justifyContent="space-evenly">
-					{!!data &&
-						data.pokemons.results.map((pokemon, key) => (
-							<Paper
-								elevation={3}
-								className={classes.pokemonItem}
-							>
-								<Link to={`pokemons/${pokemon.name}`} key={key}>
-									<Grid container>
-										<Grid item xs={12}>
-											<img
-												className={classes.pokemonImage}
-												src={pokemon.image}
-												alt={pokemon.name}
-											/>
-										</Grid>
-										<Grid
-											item
-											xs={12}
-											className={classes.pokemonName}
-										>
-											{pokemon.name}
-										</Grid>
-									</Grid>
-								</Link>
-							</Paper>
-						))}
-				</Grid>
+				{!!data &&
+					data.pokemons.results.map((pokemon, key) => (
+						<PokemonItem
+							key={key}
+							name={pokemon.name}
+							image={pokemon.image}
+							ownedCount={getMyPokemonCount(
+								myPokemons,
+								pokemon.name
+							)}
+						/>
+					))}
 				<Grid item xs={12} className={classes.paginationContainer}>
 					{!!data && (
 						<Pagination

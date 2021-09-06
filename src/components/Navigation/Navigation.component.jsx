@@ -1,10 +1,11 @@
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useStyles } from "./Navigation.styles";
 
 const Navigation = () => {
-	const [value, setValue] = React.useState("pokemons");
+	const location = useLocation();
+	const [value, setValue] = React.useState(location.pathname);
 	const classes = useStyles();
 
 	return (
@@ -19,7 +20,7 @@ const Navigation = () => {
 			<BottomNavigationAction
 				component={Link}
 				to="/"
-				value="pokemons"
+				value="/"
 				className={classes.action}
 				label="Pokemon List"
 				icon={null}
@@ -27,7 +28,7 @@ const Navigation = () => {
 			<BottomNavigationAction
 				component={Link}
 				to="/my-pokemon"
-				value="my-pokemon"
+				value="/my-pokemon"
 				className={classes.action}
 				label="My Pokemon"
 				icon={null}
