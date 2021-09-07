@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { createBrowserHistory } from "history";
-import { Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import PokemonProvider from "./providers/pokemon/pokemon.provider";
 
@@ -16,13 +16,13 @@ const hist = createBrowserHistory();
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Router history={hist}>
+		<BrowserRouter history={hist}>
 			<ApolloProvider client={client}>
 				<PokemonProvider>
 					<App />
 				</PokemonProvider>
 			</ApolloProvider>
-		</Router>
+		</BrowserRouter>
 	</React.StrictMode>,
 	document.getElementById("root")
 );

@@ -38,7 +38,7 @@ const ModalReleaseConfirmation = (props) => {
 					<Grid
 						component={Button}
 						item
-						xs={12}
+						xs={4}
 						className={`${classes.buttonConfirmation} ${classes.danger}`}
 						onClick={onYesConfirm}
 					>
@@ -47,7 +47,7 @@ const ModalReleaseConfirmation = (props) => {
 					<Grid
 						component={Button}
 						item
-						xs={12}
+						xs={4}
 						className={`${classes.buttonConfirmation} ${classes.success}`}
 						onClick={onNoConfirm}
 					>

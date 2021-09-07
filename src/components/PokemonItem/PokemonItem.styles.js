@@ -57,15 +57,15 @@ export const useStyles = makeStyles((theme) => ({
 		alignContent: "flex-end",
 	},
 	releaseButton: {
-		zIndex : 2,
 		width: "100%",
-		borderRadius: "8px",
-		fontWeight: "bold",
 		color: "white",
 
 		"& img": {
 			width: "18px",
 			marginLeft: "12px",
+		},
+		"&:hover": {
+			fontWeight: "bold",
 		},
 	},
 }));

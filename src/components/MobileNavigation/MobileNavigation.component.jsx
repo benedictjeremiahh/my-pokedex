@@ -1,9 +1,9 @@
 import { BottomNavigation, BottomNavigationAction } from "@material-ui/core";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { useStyles } from "./Navigation.styles";
+import { useStyles } from "./MobileNavigation.styles";
 
-const Navigation = () => {
+const MobileNavigation = () => {
 	const location = useLocation();
 	const [value, setValue] = React.useState(location.pathname);
 	const classes = useStyles();
@@ -16,6 +16,7 @@ const Navigation = () => {
 			}}
 			showLabels
 			className={classes.root}
+			data-testid="mobile-navigation"
 		>
 			<BottomNavigationAction
 				component={Link}
@@ -37,4 +38,4 @@ const Navigation = () => {
 	);
 };
 
-export default Navigation;
+export default MobileNavigation;

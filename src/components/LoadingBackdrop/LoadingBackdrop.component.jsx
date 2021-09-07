@@ -10,7 +10,11 @@ const LoadingBackdrop = (props) => {
 		backgroundColor,
 	});
 	return (
-		<Backdrop className={classes.backdrop} open={open}>
+		<Backdrop
+			className={classes.backdrop}
+			open={open}
+			data-testid="loading-backdrop"
+		>
 			<CircularProgress color="inherit" />
 		</Backdrop>
 	);

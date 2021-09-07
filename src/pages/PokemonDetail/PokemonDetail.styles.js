@@ -7,14 +7,20 @@ export const useStyles = makeStyles((theme) => ({
 		justifyContent: "center",
 	},
 	catchButton: {
-		fontWeight: "bold",
 		color: "white",
-		paddingLeft: "24px",
-		paddingRight: "24px",
+		padding: "12px 46px",
+		fontSize: "16px",
 
 		"& img": {
 			width: "18px",
 			marginLeft: "12px",
 		},
+		"&:hover": {
+			fontWeight: "bold",
+			"& img": {
+				animation: `$pokeballRotation 2000ms infinite`,
+			},
+		},
 	},
+	
 }));

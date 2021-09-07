@@ -6,6 +6,11 @@ export const useStyles = makeStyles((theme) => ({
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
+
+		[theme.breakpoints.up("md")]: {
+			width: "50vw",
+			margin: "0 auto",
+		},
 	},
 	content: {
 		backgroundColor: theme.palette.background.paper,
@@ -29,7 +34,7 @@ export const useStyles = makeStyles((theme) => ({
 		textAlign: "center",
 		fontSize: "18px",
 		marginTop: "18px",
-		lineHeight : '24px'
+		lineHeight: "24px",
 	},
 	nicknameInputContainer: {
 		marginTop: "12px",

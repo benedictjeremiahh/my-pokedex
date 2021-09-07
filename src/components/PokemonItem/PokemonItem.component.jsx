@@ -33,6 +33,8 @@ const PokemonItem = (props) => {
 				to={isMyPokemon ? `my-pokemon/${nickname}` : `pokemons/${name}`}
 				item
 				xs={isMyPokemon ? 12 : 5}
+				sm={isMyPokemon ? 5 : 5}
+				md={isMyPokemon ? 3 : 2}
 				container
 				className={classes.itemContainer}
 				justifyContent="center"

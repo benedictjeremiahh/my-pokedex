@@ -51,7 +51,7 @@ const PokemonDetail = () => {
 				<>
 					<Grid
 						container
-						justifyContent="center"
+						justifyContent="space-between"
 						className={classes.container}
 					>
 						<PokemonInformation

@@ -56,7 +56,10 @@ export const useStyles = makeStyles((theme) => ({
 		paddingLeft: "0",
 
 		"& li": {
-			margin: "5px 0",
+			lineHeight: "28px",
+			"&.moves": {
+				display: "inline",
+			},
 		},
 	},
 	hiddenAbbility: {
@@ -65,14 +68,5 @@ export const useStyles = makeStyles((theme) => ({
 	loadAllButton: {
 		textDecoration: "underline",
 		cursor: "pointer",
-	},
-	editButton: {
-		float: "right",
-		cursor: "pointer",
-		minWidth: "20px",
-
-		"& img": {
-			width: "20px",
-		},
 	},
 }));

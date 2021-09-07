@@ -1,5 +1,7 @@
 import { createTheme } from "@material-ui/core";
+import createBreakpoints from "@material-ui/core/styles/createBreakpoints";
 
+const breakpoints = createBreakpoints({});
 export const theme = createTheme({
 	typeColors: {
 		"&.normal": {
@@ -63,11 +65,37 @@ export const theme = createTheme({
 		},
 		container: {
 			padding: "24px 12px 84px 12px",
+
+			[breakpoints.up("md")]: {
+				padding: "24px 12px",
+			},
 		},
 		paginationContainer: {
 			paddingTop: "24px",
 			display: "flex",
 			justifyContent: "center",
+		},
+		
+		// animations
+		"@keyframes pokeballRotation": {
+			"0%": {
+				transform: "rotate(0)",
+			},
+			"15%": {
+				transform: "rotate(-25deg)",
+			},
+			"30%": {
+				transform: "rotate(25deg)",
+			},
+			"50%": {
+				transform: "rotate(-25deg)",
+			},
+			"65%": {
+				transform: "rotate(25deg)",
+			},
+			"100%": {
+				transform: "rotate(0)",
+			},
 		},
 	},
 });

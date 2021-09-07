@@ -1,6 +1,6 @@
 import { Grid } from "@material-ui/core";
 import { Pagination } from "@material-ui/lab";
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import PokemonItem from "../../components/PokemonItem/PokemonItem.component";
 import usePagination from "../../hooks/Pagination.hooks";
 import { PokemonContext } from "../../providers/pokemon/pokemon.provider";
@@ -14,10 +14,14 @@ const MyPokemon = () => {
 		defaultOffset: 1,
 		limit,
 	});
-	const { myPokemons, releasePokemon } = useContext(PokemonContext);
+	const { myPokemons } = useContext(PokemonContext);
 
 	return (
-		<Grid container className={classes.container}>
+		<Grid
+			container
+			className={classes.container}
+			justifyContent="space-evenly"
+		>
 			{myPokemons
 				.filter(
 					(pokemon, key) =>

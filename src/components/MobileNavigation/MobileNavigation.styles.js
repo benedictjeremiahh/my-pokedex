@@ -8,7 +8,7 @@ export const useStyles = makeStyles((theme) => ({
 		left: 0,
 		zIndex: theme.zIndex.drawer + 2,
 
-		backgroundImage: "linear-gradient(to bottom right, #D579C8, #F36471)",
+		backgroundImage: "linear-gradient(to bottom right, #D579C8, #FF1C1C)",
 	},
 
 	action: {

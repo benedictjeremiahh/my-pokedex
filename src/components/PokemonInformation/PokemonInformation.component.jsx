@@ -1,12 +1,10 @@
-import { Button, Chip, Divider, Grid, TextField } from "@material-ui/core";
+import { Chip, Divider, Grid } from "@material-ui/core";
 import React, { useState } from "react";
 import {
 	cleanString,
 	roundToTwoDigitsAfterComma,
 } from "../../helpers/General.helper";
 import { useStyles } from "./PokemonInformation.styles";
-import EditIcon from "../../assets/svg/edit_icon.svg";
-import SaveIconWhite from "../../assets/svg/save_icon_white.svg";
 
 const PokemonInformation = (props) => {
 	const { pokemon, nickname } = props;
@@ -19,7 +17,7 @@ const PokemonInformation = (props) => {
 
 	return (
 		<>
-			<Grid item xs={12}>
+			<Grid item xs={12} md={3}>
 				<img
 					className={classes.pokemonImage}
 					src={pokemon.sprites.front_default}
@@ -33,6 +31,7 @@ const PokemonInformation = (props) => {
 				container
 				justifyContent="flex-start"
 				alignContent="flex-start"
+				md={8}
 			>
 				<Grid item xs={12}>
 					{pokemon.types.map((typeObj, key) => (
@@ -46,58 +45,58 @@ const PokemonInformation = (props) => {
 				{!!nickname && (
 					<>
 						<Divider className={classes.horizontalDivider} />
-						<Grid item xs={3} className={classes.label}>
+						<Grid item xs={3} md={2} className={classes.label}>
 							Nickname
 						</Grid>
-						<Grid item xs={1} className={classes.label}>
+						<Grid item xs={1} md={1} className={classes.label}>
 							:
 						</Grid>
-						<Grid item xs={8}>
+						<Grid item xs={8} md={9}>
 							{nickname}
 						</Grid>
 					</>
 				)}
 				<Divider className={classes.horizontalDivider} />
-				<Grid item xs={3} className={classes.label}>
+				<Grid item xs={3} md={2} className={classes.label}>
 					Name
 				</Grid>
-				<Grid item xs={1} className={classes.label}>
+				<Grid item xs={1} md={1} className={classes.label}>
 					:
 				</Grid>
-				<Grid item xs={8} className={classes.capitalized}>
+				<Grid item xs={8} md={9} className={classes.capitalized}>
 					{pokemon.name}
 				</Grid>
 
 				<Divider className={classes.horizontalDivider} />
-				<Grid item xs={3} className={classes.label}>
+				<Grid item xs={3} md={2} className={classes.label}>
 					Height
 				</Grid>
-				<Grid item xs={1} className={classes.label}>
+				<Grid item xs={1} md={1} className={classes.label}>
 					:
 				</Grid>
-				<Grid item xs={8}>
+				<Grid item xs={8} md={9}>
 					{roundToTwoDigitsAfterComma(pokemon.height / 10)} m
 				</Grid>
 
 				<Divider className={classes.horizontalDivider} />
-				<Grid item xs={3} className={classes.label}>
+				<Grid item xs={3} md={2} className={classes.label}>
 					Weight
 				</Grid>
-				<Grid item xs={1} className={classes.label}>
+				<Grid item xs={1} md={1} className={classes.label}>
 					:
 				</Grid>
-				<Grid item xs={8}>
+				<Grid item xs={8} md={9}>
 					{roundToTwoDigitsAfterComma(pokemon.weight / 10)} kg
 				</Grid>
 
 				<Divider className={classes.horizontalDivider} />
-				<Grid item xs={3} className={classes.label}>
+				<Grid item xs={3} md={2} className={classes.label}>
 					Abilities
 				</Grid>
-				<Grid item xs={1} className={classes.label}>
+				<Grid item xs={1} md={1} className={classes.label}>
 					:
 				</Grid>
-				<Grid item xs={8}>
+				<Grid item xs={8} md={9}>
 					{pokemon.abilities.length > 0 ? (
 						<ol
 							className={`${classes.orderedList} ${classes.capitalized}`}
@@ -125,13 +124,13 @@ const PokemonInformation = (props) => {
 				</Grid>
 
 				<Divider className={classes.horizontalDivider} />
-				<Grid item xs={3} className={classes.label}>
+				<Grid item xs={3} md={2} className={classes.label}>
 					Moves
 				</Grid>
-				<Grid item xs={1} className={classes.label}>
+				<Grid item xs={1} md={1} className={classes.label}>
 					:
 				</Grid>
-				<Grid item xs={8}>
+				<Grid item xs={8} md={9}>
 					{pokemon.moves.length > 0 ? (
 						<>
 							<ol
@@ -142,7 +141,8 @@ const PokemonInformation = (props) => {
 										isLoadAllMoves ? !!obj : key < 5
 									)
 									.map((moveObj, key) => (
-										<li key={key}>
+										<li key={key} className="moves">
+											{key !== 0 && <b> | </b>}
 											{cleanString(moveObj.move.name)}
 										</li>
 									))}

@@ -1,10 +1,9 @@
 import { useQuery } from "@apollo/client";
-import { Grid, Paper } from "@material-ui/core";
-import React, { useContext, useState } from "react";
+import { Grid } from "@material-ui/core";
+import React, { useContext } from "react";
 import LoadingBackdrop from "../../components/LoadingBackdrop/LoadingBackdrop.component";
 import { GET_POKEMON_LIST } from "../../graphql/queries/PokemonList.queries";
 import { useStyles } from "./PokemonList.styles";
-import { Link } from "react-router-dom";
 import Pagination from "@material-ui/lab/Pagination";
 import { getMyPokemonCount } from "../../helpers/PokemonList.helper";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.component";
@@ -36,7 +35,11 @@ const PokemonList = () => {
 				backgroundColor="white"
 			/>
 
-			<Grid container className={classes.container}>
+			<Grid
+				container
+				className={classes.container}
+				justifyContent="space-evenly"
+			>
 				{!!data &&
 					data.pokemons.results.map((pokemon, key) => (
 						<PokemonItem

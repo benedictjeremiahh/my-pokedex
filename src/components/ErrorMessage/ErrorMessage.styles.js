@@ -8,9 +8,14 @@ export const useStyles = makeStyles((theme) => ({
 
 		"& img": {
 			width: "80vw",
+
+			[theme.breakpoints.up("md")]: {
+				width: "20vw",
+			},
 		},
 	},
 	errorMessageContainer: {
+		textAlign: "center",
 		marginTop: "12px",
 		fontWeight: "bold",
 	},

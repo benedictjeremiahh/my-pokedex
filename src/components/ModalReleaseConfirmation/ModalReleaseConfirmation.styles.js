@@ -6,6 +6,11 @@ export const useStyles = makeStyles((theme) => ({
 		display: "flex",
 		alignItems: "center",
 		justifyContent: "center",
+
+		[theme.breakpoints.up("md")]: {
+			width: "50vw",
+			margin: "0 auto",
+		},
 	},
 	content: {
 		backgroundColor: theme.palette.background.paper,
@@ -37,5 +42,13 @@ export const useStyles = makeStyles((theme) => ({
 		paddingRight: "24px",
 
 		margin: "6px 0",
+
+		[theme.breakpoints.up("md")]: {
+			margin: "12px auto",
+		},
+
+		"&:hover": {
+			fontWeight: "bold",
+		},
 	},
 }));
