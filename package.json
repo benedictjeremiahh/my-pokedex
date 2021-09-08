@@ -1,8 +1,8 @@
 {
+	"homepage": "https://benedictjeremiahh.github.io/my-pokedex",
 	"name": "my-pokedex",
 	"version": "0.1.0",
 	"private": true,
-	"homepage": "https://benedictjeremiahh.github.io/my-pokedex",
 	"dependencies": {
 		"@apollo/client": "^3.4.10",
 		"@material-ui/core": "^4.12.3",
