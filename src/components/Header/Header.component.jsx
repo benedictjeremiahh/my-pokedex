@@ -8,7 +8,9 @@ const Header = () => {
 	const classes = useStyles();
 	return (
 		<header className={classes.header} data-testid="header">
-			<img src={PokemonLogo} alt="Pokemon Logo" />
+			<NavLink to="/">
+				<img src={PokemonLogo} alt="Pokemon Logo" />
+			</NavLink>
 			<Hidden smDown>
 				<nav
 					className={classes.navigation}
