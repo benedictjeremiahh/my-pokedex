@@ -13,19 +13,19 @@ const MyPokemonDetail = lazy(() =>
 
 export const routes = [
 	{
-		path: "/",
+		path: `${process.env.PUBLIC_URL}/`,
 		component: PokemonList,
 	},
 	{
-		path: "/pokemons/:name",
+		path: `${process.env.PUBLIC_URL}/pokemons/:name`,
 		component: PokemonDetail,
 	},
 	{
-		path: "/my-pokemon",
+		path: `${process.env.PUBLIC_URL}/my-pokemon`,
 		component: MyPokemon,
 	},
 	{
-		path: "/my-pokemon/:nickname",
+		path: `${process.env.PUBLIC_URL}/my-pokemon/:nickname`,
 		component: MyPokemonDetail,
 	},
 ];
