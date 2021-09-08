@@ -7,6 +7,7 @@ import { createBrowserHistory } from "history";
 import { BrowserRouter } from "react-router-dom";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import PokemonProvider from "./providers/pokemon/pokemon.provider";
+import * as serviceWorker from "./serviceWorkerRegistration";
 
 const client = new ApolloClient({
 	uri: "https://graphql-pokeapi.vercel.app/api/graphql",
@@ -30,4 +31,5 @@ ReactDOM.render(
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+serviceWorker.register();
 reportWebVitals();
