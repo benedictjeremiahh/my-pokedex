@@ -8,7 +8,7 @@ const Header = () => {
 	const classes = useStyles();
 	return (
 		<header className={classes.header} data-testid="header">
-			<NavLink to="/">
+			<NavLink to={`${process.env.PUBLIC_URL}/`}>
 				<img src={PokemonLogo} alt="Pokemon Logo" />
 			</NavLink>
 			<Hidden smDown>
@@ -17,7 +17,7 @@ const Header = () => {
 					data-testid="header-navigation"
 				>
 					<NavLink
-						to="/"
+						to={`${process.env.PUBLIC_URL}/`}
 						activeClassName={classes.activeNavLink}
 						exact
 						data-testid="pokemon-list-header-navigation"
@@ -25,7 +25,7 @@ const Header = () => {
 						Pokemon List
 					</NavLink>
 					<NavLink
-						to="/my-pokemon"
+						to={`${process.env.PUBLIC_URL}/my-pokemon`}
 						activeClassName={classes.activeNavLink}
 						exact
 						data-testid="my-pokemon-header-navigation"

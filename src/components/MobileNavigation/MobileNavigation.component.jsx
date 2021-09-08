@@ -25,8 +25,8 @@ const MobileNavigation = () => {
 			>
 				<BottomNavigationAction
 					component={Link}
-					to="/"
-					value="/"
+					to={`${process.env.PUBLIC_URL}/`}
+					value={`${process.env.PUBLIC_URL}/`}
 					className={classes.action}
 					label="Pokemon List"
 					icon={null}
@@ -34,8 +34,8 @@ const MobileNavigation = () => {
 				/>
 				<BottomNavigationAction
 					component={Link}
-					to="/my-pokemon"
-					value="/my-pokemon"
+					to={`${process.env.PUBLIC_URL}/my-pokemon`}
+					value={`${process.env.PUBLIC_URL}/my-pokemon`}
 					className={classes.action}
 					label="My Pokemon"
 					icon={null}
