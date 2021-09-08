@@ -5,7 +5,10 @@ import { createMemoryHistory } from "history";
 
 describe("<Header />", () => {
 	test("renders without error", () => {
-		render(<Header />);
+		const route = "/";
+		const history = createMemoryHistory({ initialEntries: [route] });
+		const width = "sm";
+		renderWithRouterAndWidth(<Header />, { history, width });
 		const header = screen.getByTestId("header");
 		expect(header).toBeInTheDocument();
 	});
