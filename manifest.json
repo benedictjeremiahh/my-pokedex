@@ -1,11 +1,6 @@
 {
-	"theme_color": "#000000",
-	"background_color": "#ffffff",
-	"display": "standalone",
-	"scope": "/",
-	"start_url": ".",
-	"name": "My Pokedex",
 	"short_name": "My Pokedex",
+	"name": "My Pokedex by Benedict Jeremiah",
 	"description": "Web site created using create-react-app, graphql, react hooks, context API to capture and view list of pokemons",
 	"icons": [
 		{
@@ -28,5 +23,9 @@
 			"sizes": "512x512",
 			"type": "image/png"
 		}
-	]
+	],
+	"start_url": ".",
+	"display": "standalone",
+	"theme_color": "#000000",
+	"background_color": "#ffffff"
 }
