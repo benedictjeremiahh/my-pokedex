@@ -31,7 +31,7 @@ const MyPokemonDetail = () => {
 	const onConfirmInsideDetail = (isReleased) => {
 		onConfirm(isReleased);
 
-		if (isReleased) history.push("/my-pokemon");
+		if (isReleased) history.push(`${process.env.PUBLIC_URL}/my-pokemon`);
 	};
 
 	const onButtonReleaseClick = () => {
