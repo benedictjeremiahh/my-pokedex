@@ -18,7 +18,6 @@ describe("<LoadingBackdrop />", () => {
 		render(<LoadingBackdrop {...props} />);
 		const loadingBackdrop = screen.getByTestId("loading-backdrop");
 
-		expect(loadingBackdrop).toBeInTheDocument();
 		expect(loadingBackdrop).toHaveStyle(`color : ${props.color}`);
 		expect(loadingBackdrop).toHaveStyle(
 			`background : ${props.backgroundColor}`

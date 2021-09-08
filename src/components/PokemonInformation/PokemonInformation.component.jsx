@@ -22,6 +22,7 @@ const PokemonInformation = (props) => {
 					className={classes.pokemonImage}
 					src={pokemon.sprites.front_default}
 					alt={pokemon.name}
+					data-testid="pokemon-information-image"
 				/>
 			</Grid>
 			<Grid
@@ -39,6 +40,7 @@ const PokemonInformation = (props) => {
 							key={key}
 							label={typeObj.type.name}
 							className={`${classes.chipType} ${typeObj.type.name}`}
+							data-testid={`pokemon-information-${typeObj.type.name}`}
 						/>
 					))}
 				</Grid>
@@ -51,7 +53,12 @@ const PokemonInformation = (props) => {
 						<Grid item xs={1} md={1} className={classes.label}>
 							:
 						</Grid>
-						<Grid item xs={8} md={9}>
+						<Grid
+							item
+							xs={8}
+							md={9}
+							data-testid="pokemon-information-nickname"
+						>
 							{nickname}
 						</Grid>
 					</>
@@ -63,7 +70,13 @@ const PokemonInformation = (props) => {
 				<Grid item xs={1} md={1} className={classes.label}>
 					:
 				</Grid>
-				<Grid item xs={8} md={9} className={classes.capitalized}>
+				<Grid
+					item
+					xs={8}
+					md={9}
+					className={classes.capitalized}
+					data-testid="pokemon-information-name"
+				>
 					{pokemon.name}
 				</Grid>
 
@@ -74,7 +87,12 @@ const PokemonInformation = (props) => {
 				<Grid item xs={1} md={1} className={classes.label}>
 					:
 				</Grid>
-				<Grid item xs={8} md={9}>
+				<Grid
+					item
+					xs={8}
+					md={9}
+					data-testid="pokemon-information-height"
+				>
 					{roundToTwoDigitsAfterComma(pokemon.height / 10)} m
 				</Grid>
 
@@ -85,7 +103,12 @@ const PokemonInformation = (props) => {
 				<Grid item xs={1} md={1} className={classes.label}>
 					:
 				</Grid>
-				<Grid item xs={8} md={9}>
+				<Grid
+					item
+					xs={8}
+					md={9}
+					data-testid="pokemon-information-weight"
+				>
 					{roundToTwoDigitsAfterComma(pokemon.weight / 10)} kg
 				</Grid>
 
@@ -96,13 +119,21 @@ const PokemonInformation = (props) => {
 				<Grid item xs={1} md={1} className={classes.label}>
 					:
 				</Grid>
-				<Grid item xs={8} md={9}>
+				<Grid
+					item
+					xs={8}
+					md={9}
+					data-testid="pokemon-information-abilities"
+				>
 					{pokemon.abilities.length > 0 ? (
 						<ol
 							className={`${classes.orderedList} ${classes.capitalized}`}
 						>
 							{pokemon.abilities.map((abilityObj, key) => (
-								<li key={key}>
+								<li
+									key={key}
+									data-testid="pokemon-information-ability"
+								>
 									{cleanString(abilityObj.ability.name)}{" "}
 									{abilityObj.is_hidden ? (
 										<>
@@ -110,6 +141,7 @@ const PokemonInformation = (props) => {
 												className={
 													classes.hiddenAbbility
 												}
+												data-testid="pokemon-information-hidden-ability"
 											>
 												(hidden ability)
 											</span>
@@ -130,7 +162,12 @@ const PokemonInformation = (props) => {
 				<Grid item xs={1} md={1} className={classes.label}>
 					:
 				</Grid>
-				<Grid item xs={8} md={9}>
+				<Grid
+					item
+					xs={8}
+					md={9}
+					data-testid="pokemon-information-moves"
+				>
 					{pokemon.moves.length > 0 ? (
 						<>
 							<ol
@@ -141,20 +178,27 @@ const PokemonInformation = (props) => {
 										isLoadAllMoves ? !!obj : key < 5
 									)
 									.map((moveObj, key) => (
-										<li key={key} className="moves">
+										<li
+											key={key}
+											className="moves"
+											data-testid="pokemon-information-move"
+										>
 											{key !== 0 && <b> | </b>}
 											{cleanString(moveObj.move.name)}
 										</li>
 									))}
 							</ol>
-							<span
-								className={classes.loadAllButton}
-								onClick={onClickisLoadAllMoves}
-							>
-								{isLoadAllMoves
-									? "Hide Moves"
-									: "Load All Moves"}
-							</span>
+							{pokemon.moves.length > 5 && (
+								<span
+									className={classes.loadAllButton}
+									onClick={onClickisLoadAllMoves}
+									data-testid="pokemon-information-load-hide-moves-button"
+								>
+									{isLoadAllMoves
+										? "Hide Moves"
+										: "Load All Moves"}
+								</span>
+							)}
 						</>
 					) : (
 						"-"

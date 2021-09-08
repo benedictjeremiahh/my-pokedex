@@ -1,12 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import ErrorMessage from "./ErrorMessage.component";
 
-const resizeWindow = (x, y) => {
-	window.innerWidth = x;
-	window.innerHeight = y;
-	window.dispatchEvent(new Event("resize"));
-};
-
 describe("<ErrorMessage />", () => {
 	beforeEach(() => {
 		render(<ErrorMessage />);

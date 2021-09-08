@@ -12,13 +12,13 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage.component";
 import useReleasePokemon from "../../hooks/ReleasePokemon.hooks";
 import ModalReleaseConfirmation from "../../components/ModalReleaseConfirmation/ModalReleaseConfirmation.component";
 
-const PokemonDetail = () => {
+const MyPokemonDetail = () => {
 	const classes = useStyles();
 	const history = useHistory();
 	const { nickname } = useParams();
 	const { myPokemons } = useContext(PokemonContext);
 	const [showReleaseConfirmation, onReleaseClick, onConfirm] =
-		useReleasePokemon({ nickname });
+		useReleasePokemon();
 
 	const { loading, error, data } = useQuery(GET_POKEMON_BY_NAME, {
 		variables: {
@@ -30,7 +30,12 @@ const PokemonDetail = () => {
 
 	const onConfirmInsideDetail = (isReleased) => {
 		onConfirm(isReleased);
-		history.push("/my-pokemon");
+
+		if (isReleased) history.push("/my-pokemon");
+	};
+
+	const onButtonReleaseClick = () => {
+		onReleaseClick(nickname);
 	};
 
 	if (!!error) return <ErrorMessage />;
@@ -53,6 +58,7 @@ const PokemonDetail = () => {
 						container
 						justifyContent="space-between"
 						className={classes.container}
+						data-testid="my-pokemon-detail-container"
 					>
 						<PokemonInformation
 							pokemon={data.pokemon}
@@ -65,7 +71,8 @@ const PokemonDetail = () => {
 						>
 							<Button
 								className={`${classes.releaseButton} ${classes.danger}`}
-								onClick={onReleaseClick}
+								onClick={onButtonReleaseClick}
+								data-testid="my-pokemon-release-button"
 							>
 								Release Me{" "}
 								<img src={PokeballOpen} alt="PokeballOpen" />
@@ -78,4 +85,4 @@ const PokemonDetail = () => {
 	);
 };
 
-export default PokemonDetail;
+export default MyPokemonDetail;

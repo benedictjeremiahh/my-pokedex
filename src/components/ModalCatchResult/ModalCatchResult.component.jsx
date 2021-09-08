@@ -21,6 +21,11 @@ const ModalCatchResult = (props) => {
 	const updateNickname = (e) => {
 		e.preventDefault();
 
+		if (nickname === "") {
+			setErrorText("Nickname cannot be empty");
+			return;
+		}
+
 		const checkNicknameExist = myPokemons.find(
 			(myPokemon) =>
 				myPokemon.id !== pokemon.id && myPokemon.nickname === nickname
@@ -30,17 +35,18 @@ const ModalCatchResult = (props) => {
 			setErrorText(
 				"This nickname is already been taken, please choose another nickname"
 			);
-		} else {
-			const hasNicknameChanges = nickname !== pokemon.nickname;
-			if (hasNicknameChanges) {
-				editPokemon({
-					id: pokemon.id,
-					nickname: pokemon.nickname,
-					newNickname: nickname,
-				});
-			}
-			onClose();
+			return;
 		}
+
+		const hasNicknameChanges = nickname !== pokemon.nickname;
+		if (hasNicknameChanges) {
+			editPokemon({
+				id: pokemon.id,
+				nickname: pokemon.nickname,
+				newNickname: nickname,
+			});
+		}
+		onClose();
 	};
 
 	const onChangeNickname = (e) => {
@@ -63,10 +69,16 @@ const ModalCatchResult = (props) => {
 				BackdropProps={{
 					timeout: 500,
 				}}
+				data-testid="modal-catch-result"
 			>
 				<Fade in={open}>
 					<Grid container className={classes.content}>
-						<Grid item xs={12} className={classes.modalTitle}>
+						<Grid
+							item
+							xs={12}
+							className={classes.modalTitle}
+							data-testid="modal-catch-title"
+						>
 							{isCatchSuccess === true ? (
 								<>
 									Congratulations!{" "}
@@ -76,13 +88,21 @@ const ModalCatchResult = (props) => {
 								"Aw.. That's Bad :("
 							)}
 						</Grid>
-						<Grid item xs={12} className={classes.modalSubTitle}>
+						<Grid
+							item
+							xs={12}
+							className={classes.modalSubTitle}
+							data-testid="modal-catch-subtitle"
+						>
 							{isCatchSuccess === true
 								? "You have captured a pokemon, now give it a nickname!"
 								: "You haven't successfully capture the pokemon. Don't be sad fellas, Let's try again!"}
 						</Grid>
 						{isCatchSuccess === true ? (
-							<form onSubmit={updateNickname}>
+							<form
+								onSubmit={updateNickname}
+								data-testid="modal-catch-form-nickname"
+							>
 								<Grid
 									item
 									xs={12}
@@ -97,6 +117,14 @@ const ModalCatchResult = (props) => {
 										helperText={errorText}
 										onChange={onChangeNickname}
 										value={nickname}
+										inputProps={{
+											"data-testid":
+												"modal-catch-nickname-input",
+										}}
+										FormHelperTextProps={{
+											"data-testid":
+												"modal-catch-nickname-helper-text",
+										}}
 									/>
 								</Grid>
 								<Grid
@@ -107,6 +135,7 @@ const ModalCatchResult = (props) => {
 									<Button
 										className={`${classes.submitButton} ${classes.success}`}
 										type="submit"
+										data-testid="modal-catch-submit-button"
 									>
 										Submit
 									</Button>
@@ -122,6 +151,7 @@ const ModalCatchResult = (props) => {
 									className={`${classes.closeButton} ${classes.danger}`}
 									type="button"
 									onClick={onClose}
+									data-testid="modal-catch-close-button"
 								>
 									Close
 								</Button>

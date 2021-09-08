@@ -13,8 +13,9 @@ export const PokemonContext = createContext({
 	getCountPokemonByName: () => {},
 });
 
-const PokemonProvider = ({ children }) => {
+const PokemonProvider = ({ children, testingProps = {} }) => {
 	const myPokemonsLS = localStorage.getItem("myPokemons");
+
 	const [myPokemons, setMyPokemons] = useState(
 		(!!myPokemonsLS && JSON.parse(myPokemonsLS)) || []
 	);
@@ -35,6 +36,7 @@ const PokemonProvider = ({ children }) => {
 				addPokemon,
 				editPokemon,
 				releasePokemon,
+				...testingProps,
 			}}
 		>
 			{children}

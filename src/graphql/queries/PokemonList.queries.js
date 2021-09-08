@@ -9,7 +9,6 @@ export const GET_POKEMON_LIST = gql`
 			status
 			message
 			results {
-				url
 				name
 				image
 			}

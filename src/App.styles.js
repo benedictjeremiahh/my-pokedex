@@ -57,25 +57,6 @@ export const theme = createTheme({
 		},
 	},
 	globalClasses: {
-		danger: {
-			backgroundColor: "#FF1C1C !important",
-		},
-		success: {
-			backgroundColor: "#28A745 !important",
-		},
-		container: {
-			padding: "24px 12px 84px 12px",
-
-			[breakpoints.up("md")]: {
-				padding: "24px 12px",
-			},
-		},
-		paginationContainer: {
-			paddingTop: "24px",
-			display: "flex",
-			justifyContent: "center",
-		},
-		
 		// animations
 		"@keyframes pokeballRotation": {
 			"0%": {
@@ -96,6 +77,24 @@ export const theme = createTheme({
 			"100%": {
 				transform: "rotate(0)",
 			},
+		},
+		danger: {
+			backgroundColor: "#FF1C1C !important",
+		},
+		success: {
+			backgroundColor: "#28A745 !important",
+		},
+		container: {
+			padding: "24px 12px 84px 12px",
+
+			[breakpoints.up("md")]: {
+				padding: "24px 12px",
+			},
+		},
+		paginationContainer: {
+			paddingTop: "24px",
+			display: "flex",
+			justifyContent: "center",
 		},
 	},
 });

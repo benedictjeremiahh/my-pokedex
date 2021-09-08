@@ -15,7 +15,10 @@ const useCatchPokemon = () => {
 
 		setTimeout(() => {
 			if (isSuccess) {
-				const newID = myPokemons[myPokemons.length - 1].id + 1;
+				const newID =
+					myPokemons.length > 0
+						? myPokemons[myPokemons.length - 1].id + 1
+						: 1;
 				const samePokemonCount = myPokemons.filter(
 					(myPokemon) => pokemon.name === myPokemon.name
 				).length;

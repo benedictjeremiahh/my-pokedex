@@ -3,16 +3,13 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useStyles } from "./PokemonItem.styles";
 import PokeballOpen from "../../assets/img/pokeball_open.png";
-import ModalReleaseConfirmation from "../ModalReleaseConfirmation/ModalReleaseConfirmation.component";
-import useReleasePokemon from "../../hooks/ReleasePokemon.hooks";
 
 const PokemonItem = (props) => {
-	const { isMyPokemon, name, image, ownedCount, nickname } = props;
+	const { isMyPokemon, name, image, ownedCount, nickname, onReleaseClick } =
+		props;
 	const classes = useStyles({
 		isMyPokemon,
 	});
-	const [showReleaseConfirmation, onReleaseClick, onConfirm] =
-		useReleasePokemon({ nickname });
 
 	const onClickLink = (e) => {
 		const comesFromButton =
@@ -20,14 +17,12 @@ const PokemonItem = (props) => {
 		if (comesFromButton) e.preventDefault();
 	};
 
+	const onButtonReleaseClick = () => {
+		onReleaseClick(nickname);
+	};
+
 	return (
 		<>
-			<ModalReleaseConfirmation
-				open={showReleaseConfirmation}
-				nickname={nickname}
-				onConfirm={onConfirm}
-			/>
-
 			<Grid
 				component={Link}
 				to={isMyPokemon ? `my-pokemon/${nickname}` : `pokemons/${name}`}
@@ -39,21 +34,41 @@ const PokemonItem = (props) => {
 				className={classes.itemContainer}
 				justifyContent="center"
 				onClick={onClickLink}
+				data-testid="pokemon-item-link"
 			>
 				<Grid item xs={12} className={classes.pokemonImageContainer}>
-					<img src={image} alt={name} />
+					<img
+						src={image}
+						alt={name}
+						data-testid="pokemon-item-image"
+					/>
 				</Grid>
 				{isMyPokemon && (
-					<Grid item xs={12} className={classes.pokemonNickname}>
+					<Grid
+						item
+						xs={12}
+						className={classes.pokemonNickname}
+						data-testid="pokemon-item-nickname"
+					>
 						{nickname}
 					</Grid>
 				)}
-				<Grid item xs={12} className={classes.pokemonName}>
+				<Grid
+					item
+					xs={12}
+					className={classes.pokemonName}
+					data-testid="pokemon-item-name"
+				>
 					{name}
 				</Grid>
 
 				{!isMyPokemon && (
-					<Grid item xs={12} className={classes.ownedCount}>
+					<Grid
+						item
+						xs={12}
+						className={classes.ownedCount}
+						data-testid="pokemon-item-owned-count"
+					>
 						Owned: {ownedCount}
 					</Grid>
 				)}
@@ -67,7 +82,8 @@ const PokemonItem = (props) => {
 						<Button
 							id="releaseButton"
 							className={`${classes.releaseButton} ${classes.danger}`}
-							onClick={onReleaseClick}
+							onClick={onButtonReleaseClick}
+							data-testid="pokemon-item-release-button"
 						>
 							Release Me{" "}
 							<img src={PokeballOpen} alt="PokeballOpen" />

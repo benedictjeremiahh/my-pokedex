@@ -15,8 +15,9 @@ export const useStyles = makeStyles((theme) => ({
 		},
 	},
 	errorMessageContainer: {
+		marginTop: "24px",
 		textAlign: "center",
-		marginTop: "12px",
+		fontSize: "28px",
 		fontWeight: "bold",
 	},
 }));

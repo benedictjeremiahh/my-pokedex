@@ -45,8 +45,6 @@ export const useStyles = makeStyles((theme) => ({
 
 		"& img": {
 			width: ({ isMyPokemon }) => (isMyPokemon ? "55%" : "100%"),
-
-			[theme.breakpoints.up("sm")]: {},
 		},
 		marginBottom: "6px",
 	},

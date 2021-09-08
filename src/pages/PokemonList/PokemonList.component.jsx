@@ -16,7 +16,7 @@ const PokemonList = () => {
 	const limit = 20;
 	const [page, offset, onChangePagination] = usePagination({
 		defaultPage: 1,
-		defaultOffset: 1,
+		defaultOffset: 0,
 		limit,
 	});
 	const { myPokemons } = useContext(PokemonContext);
@@ -39,6 +39,7 @@ const PokemonList = () => {
 				container
 				className={classes.container}
 				justifyContent="space-evenly"
+				data-testid="pokemon-list-container"
 			>
 				{!!data &&
 					data.pokemons.results.map((pokemon, key) => (
@@ -61,6 +62,7 @@ const PokemonList = () => {
 							onChange={onChangePagination}
 							variant="outlined"
 							shape="rounded"
+							data-testid="pagination"
 						/>
 					)}
 				</Grid>

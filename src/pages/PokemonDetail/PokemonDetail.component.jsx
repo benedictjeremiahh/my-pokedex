@@ -68,6 +68,7 @@ const PokemonDetail = () => {
 							<Button
 								className={`${classes.catchButton} ${classes.success}`}
 								onClick={catchPokemon}
+								data-testid="pokemon-detail-catch-button"
 							>
 								Catch Me <img src={Pokeball} alt="Pokeball" />
 							</Button>

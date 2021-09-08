@@ -6,7 +6,7 @@ import MobileNavigation from "./components/MobileNavigation/MobileNavigation.com
 import Header from "./components/Header/Header.component";
 import { ThemeProvider } from "@material-ui/styles";
 import { theme } from "./App.styles";
-import { Hidden } from "@material-ui/core";
+import NotFound from "./pages/NotFound/NotFound.component";
 
 function App() {
 	return (
@@ -31,11 +31,10 @@ function App() {
 								component={route.component}
 							/>
 						))}
+						<Route component={NotFound} />
 					</Switch>
 				</Suspense>
-				<Hidden mdUp>
-					<MobileNavigation />
-				</Hidden>
+				<MobileNavigation />
 			</div>
 		</ThemeProvider>
 	);

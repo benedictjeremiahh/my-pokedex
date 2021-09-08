@@ -1,14 +1,13 @@
 import { createTheme } from "@material-ui/core";
 import { ThemeProvider } from "@material-ui/styles";
 import { render } from "@testing-library/react";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
 import { theme } from "./App.styles";
+import PokemonProvider from "./providers/pokemon/pokemon.provider";
 
 // render with router
-export const renderWithRouter = (ui, { route = "/" } = {}) => {
-	window.history.pushState({}, "Test page", route);
-
-	return render(ui, { wrapper: BrowserRouter });
+export const renderWithRouter = (ui, { history }) => {
+	return render(<Router history={history}>{ui}</Router>);
 };
 
 // render with global classes
@@ -31,8 +30,41 @@ const SizeWrapper = ({ children, width }) => {
 	return <ThemeProvider theme={theme}>{children}</ThemeProvider>;
 };
 
-export const renderWithWidth = (ui, width) => {
+export const renderWithPokemonProvider = (ui, testingProps = {}) => {
 	return render(ui, {
-		wrapper: (props) => <SizeWrapper width={width} {...props} />,
+		wrapper: (props) => (
+			<PokemonProvider {...props} testingProps={testingProps} />
+		),
 	});
+};
+
+export const renderWithRouterAndWidth = (ui, { history, width }) => {
+	return render(
+		<Router history={history}>
+			<SizeWrapper width={width}>{ui}</SizeWrapper>
+		</Router>
+	);
+};
+
+export const renderWithRouterAndPokemonProvider = (
+	ui,
+	{ history, testingProps = {} }
+) => {
+	return render(
+		<Router history={history}>
+			<PokemonProvider testingProps={testingProps}>{ui}</PokemonProvider>
+		</Router>
+	);
+};
+
+export const renderWithProviders = (ui, { history, testingProps = {} }) => {
+	return render(
+		<ThemeProvider theme={theme}>
+			<Router history={history}>
+				<PokemonProvider testingProps={testingProps}>
+					{ui}
+				</PokemonProvider>
+			</Router>
+		</ThemeProvider>
+	);
 };

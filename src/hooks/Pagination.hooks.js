@@ -7,7 +7,7 @@ const usePagination = ({ defaultPage, defaultOffset, limit }) => {
 	const onChangePagination = (e, pageNumber) => {
 		setPage(pageNumber);
 		if (pageNumber === 1) {
-			setOffset(1);
+			setOffset(0);
 		} else {
 			setOffset((pageNumber - 1) * limit + 1);
 		}
